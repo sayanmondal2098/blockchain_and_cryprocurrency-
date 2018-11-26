@@ -1,5 +1,5 @@
 const BlockChain = require('./blockchain');
-const Block = require('./block');
+const Block = require('./blockchain/block');
 
 describe('Blockchain', () => {
     let bc , bc2;
@@ -41,7 +41,11 @@ describe('Blockchain', () => {
         expect((bc.chain).toEqual(bc2.chain));
     });
 
-
+    it('does not replace the chain with one of the less than or equal to length', () => {
+        bc.addBlock('foo');
+        bc.replaceChain(bc2.chain);
+        expect(bc.chain).not.toEqual(bc2.chain);
+    })
 
 }); 
 
